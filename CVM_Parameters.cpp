@@ -3,7 +3,7 @@ constexpr static char Scenario = 'B'; //  Scenario A/B/C
 
 /******   Outputfiles   ******/
 constexpr char DATAOUTFILE[] = "results/result_data.txt" ; // 
-constexpr int  GNUPLOT_USE = 2;  //  0: no gnuplot  1: show gnuplot 2: save as gif animation
+constexpr int  GNUPLOT_USE = 1;  //  0: no gnuplot  1: show gnuplot 2: save as gif animation
 constexpr char OUTGIFFILE[]  = "results/cvm.gif";  // gif 
 
 /******   Main variables; Loaded from initial configuration file   ******/

@@ -108,17 +108,6 @@ void load_initialconfiguraton(char *inputfile)
 }
 
 
-void Output_Parameters(int random_seed, FILE *fp)
-{
-  fprintf(fp,"# Scenario = %c\n", Scenario); //
-  fprintf(fp,"# seed = %d\n", random_seed); //  乱数生成のseed, 出力しとく
-  fprintf(fp,"## LX*LY = %f x %f \n",LX,LY);
-  fprintf(fp,"## KV = %e \n",KV);
-  fprintf(fp,"## Vo = %e \n",BVo);
-  fprintf(fp,"## KL = %e \n",KL);
-  fprintf(fp,"## ShpIde = %e \n",ShpIdx);  
-}
-
 
 void output(vector<double> &X,FILE *out_file)
 {
