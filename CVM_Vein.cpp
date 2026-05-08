@@ -26,12 +26,7 @@ std::mt19937 mt(random_seed);
 std::uniform_real_distribution<> unidist(0.0, 1.0);
 std::exponential_distribution<> expdist(1.0);
 
-/******************************************
-          Main Variables
-********************************************/ 
-
-
-/***  Set outputfile and parameter values  ***/
+/***  Set outputfiles, main variables, and parameters  ***/
 #include "CVM_Parameters.cpp"
 
 /***  Include libraries for simulation  ***/
@@ -49,12 +44,12 @@ std::exponential_distribution<> expdist(1.0);
 int main( int argc, char *argv[] )
 {
   int INIT_CELL_NUMBER;
-  FILE *fp; // For output DATAOUTFILE
+  FILE *fp = fopen(DATAOUTFILE,"w");  // For output DATAOUTFILE 
   FILE *gp; // For gnuplot
 
   /*** Set initial configuration ***/
-  load_initialconfiguraton( argv[1] );   // Load Initial Configuration, defined in lib/IO.cpp  
-  Set_BXY(X);           // Boundary reconfiguration, defined in lib/head_cell_vertex.cpp
+  Set_initialconfiguraton( argv[1] );   // Load Initial Configuration, defined in lib/IO.cpp  
+  Set_BXY( X );           // Boundary reconfiguration, defined in lib/head_cell_vertex.cpp
   Set_Veinregion(0.2);  // Determine Vein region, defined in lib/libVein.cpp
 
   /*** Set Parameters ***/
@@ -62,23 +57,20 @@ int main( int argc, char *argv[] )
   Vo.assign( CELL_NUMBER, BVo ); // set Vo[CELL_NUMBER] 
   BLo = ShpIdx*sqrt(BVo); 
   Lo.assign(CELL_NUMBER, BLo); 
+  Output_Parameters( random_seed, fp ); // lib/IO.cpp
 
-  /****************************
-        Time evolution
-  ****************************/
+  /***  Time evolution  ***/
   InitialRelaxation( 10.0 ); // relaxation without cell division, just for initialization
-  /***  Set cell division plan, initial guess ***/
+  
+  // Set cell division plan, initial plan
   INIT_CELL_NUMBER = CELL_NUMBER; // initial cell number 
   for( size_t c=0; c<CELL_NUMBER; ++c ){ 
     cell[c].cell_div_time = Set_CellDIvision_Time( cell[c] ); // initial assignment of planned cell division time, lib/CellDivScenario.cpp
   }
-
-  /*** For Output  ***/
-  fp = fopen(DATAOUTFILE,"w");  
-  Output_Parameters( random_seed, fp ); // lib/IO.cpp
+  // For gnuplot 
   gp = getgnuplot( GNUPLOT_USE );       // lib/gnuplot.cpp
 
-  /***   start of time evolutio ***/
+  /***  start of time evolutio ***/
   double pt = 0.0; // time 
   for( int tc=0; pt<SIMULATION_TIME; tc++ ){
     static RK2Workspace rk2wk;
