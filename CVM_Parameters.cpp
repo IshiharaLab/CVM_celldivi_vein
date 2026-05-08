@@ -1,5 +1,5 @@
 /******   Scenario   ******/
-constexpr static char Scenario = 'B'; //  Scenario A/B/C  
+constexpr char Scenario = 'B'; //  Scenario A/B/C  
 
 /******   Outputfiles   ******/
 constexpr char DATAOUTFILE[] = "results/result_data.txt" ; // 
