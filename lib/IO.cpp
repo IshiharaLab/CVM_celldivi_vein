@@ -38,7 +38,7 @@ void Set_initialconfiguraton(char *inputfile)
         sscanf(csl,"%lf",&LY);
       }else if(strstr(line,"CELL_TYPE")!=NULL){
         with_celltype = true;
-        printf("%s",line);      
+        // printf("%s",line);      
       }else if (strstr(line,"------")!=NULL){
         // check
         if( CELL_NUMBER == 0){ fprintf(stderr,"!!! CELL_NUMBER = 0\n");  exit(1); }
