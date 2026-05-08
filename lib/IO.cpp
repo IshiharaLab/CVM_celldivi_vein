@@ -1,6 +1,6 @@
 
 /***********************************/
-void load_initialconfiguraton(char *inputfile)
+void Set_initialconfiguraton(char *inputfile)
 {  
   FILE *file;
   char *csl,line[2000];
