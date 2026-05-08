@@ -88,7 +88,7 @@ bool Compare_Replace( vector<double> &X, const int ex );
 int Replace( const int ex,vector<double> &X, vector<VERTEX> &e_vtx, vector<EDGE> &e_edge, vector<CELL> &e_cell );
 
 // defined in IO.cpp
-void load_initialconfiguraton(char *inputfile);
+void Set_initialconfiguraton(char *inputfile);
 void output(vector<double> &X,FILE *out_file);
 void out_geometry(const vector<double> &X,FILE *out_file);
 void OutputTensionPressure(const vector<double> &X,FILE *out_file);
